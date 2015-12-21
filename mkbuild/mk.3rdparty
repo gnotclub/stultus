@@ -1,0 +1,62 @@
+<$mkbuild/mk.config
+
+all:QV: build
+
+build:QV: fetch patch
+	mkdir -p $src
+	oldpwd=`pwd`
+	cd $src
+	for f in $mkfile; do
+		cachefile=$oldpwd/.cache-`basename $f`
+		t=$(cmp -s $f $cachefile || echo $?)
+		if test "$t" != ""; then
+			if test "${targ}" != ""; then
+				env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f TARG="${targ}"
+			else
+				env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f
+			fi
+			cp $f $cachefile
+		fi
+	done
+
+patch:QV: fetch
+	mkdir -p $src
+	cd $src
+	n=1
+	for p in $patches; do
+		if test "$p" = "0"; then
+			n=0
+		else
+			patch -p$n < $p
+			n=1
+		fi
+	done
+
+install:QV: all
+	cd $src
+	for f in $mkfile; do
+		if test "${targ}" != ""; then
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f install TARG="${targ}" ROOT="${ROOT}"
+		else
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f install ROOT="${ROOT}"
+		fi
+	done
+
+clean:QV:
+	oldpwd=`pwd`
+	if test -d $src; then
+		cd $src
+		for f in $mkfile; do
+			rm -f $oldpwd/.cache-`basename $f`
+			env -i PATH="$PATH" configmk="$configmk" mkbuild="$mkbuild" mk -f $f clean
+		done
+	fi
+
+distclean:QV:
+	if test -d $src; then
+		echo rm -rf $src
+		rm -rf $src
+	fi
+
+<$mkbuild/mk.fetch
+<$mkbuild/mk.package

@@ -1,0 +1,6 @@
+<$mkbuild/mk.3rdparty
+
+<v.mk
+src = libevent-$v
+url = http://github.com/downloads/libevent/libevent/libevent-$v.tar.gz
+mkfile = ../libevent.mk

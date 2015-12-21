@@ -1,0 +1,8 @@
+<$mkbuild/mk.config
+<$mkbuild/mk.build
+<$mkbuild/mk.install
+<$mkbuild/mk.package
+<$mkbuild/mk.clean
+
+fetch:VQ:
+	# Nothing to download

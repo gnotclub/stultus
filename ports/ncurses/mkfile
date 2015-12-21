@@ -1,0 +1,6 @@
+<$mkbuild/mk.3rdparty
+
+<v.mk
+src = ncurses-$v
+url = http://ftp.gnu.org/pub/gnu/ncurses/ncurses-$v.tar.gz
+mkfile = ../ncurses.mk

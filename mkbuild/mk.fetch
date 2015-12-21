@@ -1,0 +1,34 @@
+fetch:QV: fetch-git fetch-http
+
+fetch-git:QV:
+	if test x"$git" != x""; then
+		if test x"$branch" = x""; then
+			branch=master
+		fi
+		test -d $src || git clone --depth 1 -b $branch $git $src
+	fi
+
+fetch-http:QV:
+	if test x"$url" != x""; then
+		for u in $url; do
+			ok=1
+			if test x"$pkgsrc" = x""; then
+				pkgsrc=`basename $u`
+			fi
+			t=$(cat checksums | $SUM -c && echo ok || echo fail)
+			if test "$(echo $t | grep ok)" = ""; then
+				rm -f "$pkgsrc"
+				wget -c "$u" -O "$pkgsrc" || {
+					rm -f "$pkgsrc"
+					ok=0
+				}
+			fi
+			if test -e "$pkgsrc"; then
+				tar -xf "$pkgsrc"
+			fi
+		done
+		if test "$ok" -eq 0; then
+			echo "Package fetching failed" 1>&2
+			false
+		fi
+	fi

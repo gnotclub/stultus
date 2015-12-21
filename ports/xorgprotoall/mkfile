@@ -1,0 +1,5 @@
+<$mkbuild/mk.3rdparty
+
+<v.mk
+src = xorgprotoall
+mkfile = ../xorgprotoall.mk

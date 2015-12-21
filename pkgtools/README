@@ -1,0 +1,10 @@
+This is a collection of package management tools
+for morpheus[0].
+
+The command names are inspired by Slackware's package
+management tools.
+
+The only dependency is libarchive[1].
+
+[0] http://morpheus.2f30.org/
+[1] http://www.libarchive.org/

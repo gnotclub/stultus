@@ -1,0 +1,9 @@
+VERSION = 0.4.1
+
+PREFIX = /usr/local
+
+CC = gcc
+LD = $(CC)
+CPPFLAGS = -D_BSD_SOURCE -D_GNU_SOURCE -DVERSION=\"${VERSION}\" -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+CFLAGS   = -O2 -std=c99 -Wall -Wextra -pedantic $(CPPFLAGS)
+LDFLAGS  = -s -larchive

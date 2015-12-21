@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# To list all packages in the mirror try searchpkg "\.tgz$"
+# To download packages try searchpkg pkg... | fetchpkg
+
+release=0.0
+arch=x86_64
+mirror="http://morpheus.2f30.org/$release/packages/$arch"
+
+usage() {
+	echo "usage: $(basename $0) pkg..." 1>&2
+	exit 1
+}
+
+if test -z "$1"; then
+	usage
+fi
+
+curl -s "$mirror/PACKAGES" | while read -r pkg; do
+	for i in "$@"; do
+		echo "$pkg" | grep -q "$i"
+		if test "$?" -eq 0; then
+			echo "$mirror/$pkg" | sed 's/#/%23/'
+		fi
+	done
+done | sort | uniq

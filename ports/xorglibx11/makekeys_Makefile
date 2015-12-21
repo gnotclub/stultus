@@ -1,0 +1,8 @@
+all:
+	$(HOSTCC) makekeys.c -o makekeys -static -I../../include $(HOSTCC_CFLAGS)
+install:
+	true
+uninstall:
+	true
+clean:
+	true

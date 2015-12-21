@@ -1,0 +1,20 @@
+Wishlist:
+---------
+
+bob:
+	Get the cflags and ldflags of dependencies of $DEPS in a package?
+	For example when I use xorglibx11 as DEPS in a package, xorglibx11 has
+	xorgxproto as $DEPS. How would I resolve that without specifying xorgxproto
+	as DEPS in a package? With this we can get rid of pkg-config --static --[libs|cflags]
+
+	Maybe add a command like (not sure):
+
+		mk TARG='pkg' deplist    - print $DEPS list.
+		mk TARG='pkg' depcflags  - get all cflags of dependencies (DEPS_CFLAGS).
+		mk TARG='pkg' depldflags - get all ldflags of dependencies (DEPS_LDFLAGS).
+
+
+Generic
+-------
+
+  * install-dev target to install headers, libraries and dev tools

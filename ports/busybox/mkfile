@@ -1,0 +1,6 @@
+<$mkbuild/mk.3rdparty
+
+<v.mk
+src = busybox-$v
+url = http://busybox.net/downloads/busybox-$v.tar.bz2
+mkfile = ../busybox.mk

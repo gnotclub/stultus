@@ -1,0 +1,123 @@
+#!/bin/sh
+
+umask 022
+
+. /etc/rc.conf
+
+echo
+echo
+echo "         Morpheus booting"
+echo
+echo
+
+# Soft reboot on ctrl-alt-del
+/bin/ctrlaltdel -s
+
+/bin/mount -n -t proc -o nosuid,noexec,nodev proc /proc
+/bin/mount -n -t sysfs -o nosuid,noexec,nodev sysfs /sys
+
+/bin/mount -n -t tmpfs -o nosuid,mode=0755 dev /dev
+/bin/mkdir -p /dev/pts
+/bin/mount -n -t devpts -o gid=5,mode=0620 devpts /dev/pts
+
+/bin/grep -q " verbose" /proc/cmdline && dmesg -n 8 || dmesg -n 3
+
+/bin/mount -o remount,ro /
+
+echo Running smdev
+/bin/smdev -s
+
+echo Setting smdev as the kernel hotplug
+echo /bin/smdev > /proc/sys/kernel/hotplug
+
+# HACK!
+cd /dev
+/bin/ln -sf /proc/self/fd/0 stdin
+/bin/ln -sf /proc/self/fd/1 stdout
+/bin/ln -sf /proc/self/fd/2 stderr
+/bin/ln -sf /proc/self/fd fd
+cd - 1>/dev/null
+
+echo Checking filesystems
+/bin/fsck -ATa
+if [ $? -eq 1 ]; then
+	echo Filesystem errors exist, fix manually.
+	/bin/sh
+	/bin/halt -r
+fi
+
+echo Remounting root as read-write
+/bin/mount -o remount,rw /
+
+echo Mounting filesystems
+/bin/mount -a
+
+ln -sf /proc/mounts /etc/mtab
+
+echo "Setting hostname to $HOSTNAME"
+/bin/hostname $HOSTNAME
+
+echo Bringing up the lo interface
+/bin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
+/bin/ip link set lo up
+
+HWCLOCK_PARAMS="-s"
+case $HARDWARECLOCK in
+	"")
+		;;
+	UTC)
+		HWCLOCK_PARAMS="-u $HWCLOCK_PARAMS"
+		;;
+	localtime)
+		HWCLOCK_PARAMS="-l $HWCLOCK_PARAMS"
+		;;
+	*)
+		HWCLOCK_PARAMS=""
+		;;
+esac
+
+if [ -n "$HWCLOCK_PARAMS" ]; then
+	echo Setting hwclock
+	[ -n "$TIMEZONE" ] && export TZ="$TIMEZONE"
+	/bin/hwclock $HWCLOCK_PARAMS /dev/rtc0
+	unset TZ
+fi
+
+echo Setting random seed
+[ -f /etc/random-seed ] && /bin/cat /etc/random-seed >/dev/urandom
+/bin/dd if=/dev/urandom of=/etc/random-seed count=1 bs=512 2>/dev/null
+
+echo Storing dmesg output to /var/log/dmesg.log
+/bin/dmesg > /var/log/dmesg.log
+if [ -e /proc/sys/kernel/dmesg_restrict ] && [ $(/bin/cat /proc/sys/kernel/dmesg_restrict) = "1" ];
+then
+	/bin/chmod 0600 /var/log/dmesg.log
+else
+	/bin/chmod 0644 /var/log/dmesg.log
+fi
+
+echo Enabling core dumps
+ulimit -c unlimited
+
+if [ -x /bin/rc.modules ]; then
+	echo Running rc.modules
+	/bin/rc.modules
+fi
+
+if [ -x /bin/rc.svc ]; then
+	echo Running rc.svc
+	/bin/rc.svc
+fi
+
+if [ -x /bin/rc.local ]; then
+	echo Running rc.local
+	/bin/rc.local
+fi
+
+: > /var/run/utmp
+
+echo
+/bin/sh -c '/bin/respawn /bin/getty /dev/tty1 linux' &>/dev/null &
+/bin/sh -c '/bin/respawn /bin/getty /dev/tty2 linux' &>/dev/null &
+/bin/sh -c '/bin/respawn /bin/getty /dev/tty3 linux' &>/dev/null &
+/bin/sh -c '/bin/respawn /bin/getty /dev/tty4 linux' &>/dev/null &

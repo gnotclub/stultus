@@ -1,0 +1,65 @@
+install:QV: install_bin install_lib install_man install_other \
+			install_dirs install_symlinks $INSTALL_EXTRA
+	if test "$INSTALL_PERMISSIONS" != ""; then
+		eval `echo $INSTALL_PERMISSIONS | tr ' ' '\n' | paste -d ' ' - - | \
+			awk '{ printf("echo \"CHMOD %s ${ROOT}${PREFIX}%s\"; \
+				chmod %s ${ROOT}${PREFIX}%s;\n", $1, $2, $1, $2) }'`
+	fi
+
+install_bin:QV: all
+	for f in $INSTALL_BIN; do
+		$INSTALL -d -m 755 ${ROOT}$BINDIR
+		echo INSTALL ${ROOT}$BINDIR/`basename $f`
+		$INSTALL -m 755 $f ${ROOT}$BINDIR/`basename $f`
+		type=`file -b $f | cut -d ' ' -f 1`
+		if test "$type" = "ELF"; then
+			$STRIP ${ROOT}$BINDIR/`basename $f`
+		fi
+	done
+
+install_lib:QV: all
+	for f in $INSTALL_LIB; do
+		$INSTALL -d -m 755 ${ROOT}$LIBDIR
+		echo INSTALL ${ROOT}$LIBDIR/`basename $f`
+		$INSTALL -m 644 $f ${ROOT}$LIBDIR/`basename $f`
+	done
+
+install_dirs:QV: all
+	for f in $INSTALL_DIRS; do
+		echo MKDIR ${ROOT}${PREFIX}$f
+		$INSTALL -d -m 755 ${ROOT}${PREFIX}$f
+	done
+
+install_man:QV: all
+	for i in 1 1b 2 3 4 5 6 7 8 9; do
+		a=`echo '\$INSTALL_MAN'$i`
+		a=`eval echo $a`
+		for f in $a; do
+			$INSTALL -d -m 755 ${ROOT}$MANDIR/man$i
+			echo INSTALL ${ROOT}$MANDIR/man$i/`basename $f`
+			$INSTALL -m 644 $f ${ROOT}$MANDIR/man$i/`basename $f`
+		done
+	done
+
+install_other:QV: all
+	for i in 1 2 3 4 5 6 7 8; do
+		a=`echo '\$INSTALL_OTHER'$i`
+		a=`eval echo $a`
+		d=`echo '\$INSTALL_OTHER'${i}'_DIR'`
+		d=`eval echo $d`
+		p=`echo '\$INSTALL_OTHER'${i}'_PERMS'`
+		p=`eval echo $p`
+		test "$p" = "" && p=644
+		$INSTALL -d -m 755 ${ROOT}$d
+		for f in $a; do
+			echo INSTALL ${ROOT}${PREFIX}$d/`basename $f`
+			$INSTALL -m $p $f ${ROOT}${PREFIX}$d/`basename $f`
+		done
+	done
+
+install_symlinks:QV: all
+	if test "$INSTALL_SYMLINK" != ""; then
+		eval `echo $INSTALL_SYMLINK | tr ' ' '\n' | paste -d ' ' - - | \
+			awk '{ printf("echo \"LN %s ${ROOT}${PREFIX}%s\"; \
+				ln -sf %s ${ROOT}${PREFIX}%s;\n", $1, $2, $1, $2) }'`
+	fi
