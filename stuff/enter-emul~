@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cp /etc/resolv.conf $1/etc/resolv.conf
+mount -B /proc $1/proc
+mount -B /sys $1/sys
+mount -B /dev $1/dev
+mount -B /dev/pts $1/dev/pts
+
+chroot $1 /bin/sh -l
