@@ -1,14 +1,10 @@
-Generic stuff
--------------
-
-  * Make morpheus self-hosting.
-  * Enable booting the image without editing the root partition name
-      (this is needed to easily boot from usb from different machines)
-
-Packages
---------
-
-  * Create an hwclock service file.
-  * Create a tinyalsa service file.
-  * Build musl from source.
-  * Build kernel with our cross-compiler.
+* update v.mk in all ports to current versions
+* discuss package management implementation
+* write solid documentation for:
+    - installation
+    - port management
+    - system operation such as
+        1. init
+        2. mk
+        3. userland (hbase, sbase, etc.)
+* figure out build environment (what goes where, what stays on host and what stays on stultus)
