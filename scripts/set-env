@@ -1,0 +1,5 @@
+musl=/usr/local/musl
+
+export mkbuild=$(pwd)/mkbuild
+export configmk=$(pwd)/config.mk
+export PATH=$musl/bin:$PATH
