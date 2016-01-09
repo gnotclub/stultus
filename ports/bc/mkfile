@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = bc-$v
-url = http://ftp.gnu.org/gnu/bc/bc-$v.tar.gz
-mkfile = ../bc.mk

@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = gawk-$v
-url = http://ftp.heanet.ie/mirrors/gnu/gawk/gawk-$v.tar.xz
-mkfile = ../gawk.mk

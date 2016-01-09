@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = libjpeg-turbo-$v
-url = http://sourceforge.net/projects/libjpeg-turbo/files/$v/libjpeg-turbo-$v.tar.gz
-mkfile = ../libjpegturbo.mk

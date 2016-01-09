@@ -1,5 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-src = dwm
-git = git://git.suckless.org/dwm
-mkfile = ../dwm.mk

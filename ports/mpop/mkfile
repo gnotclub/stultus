@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = mpop-$v
-url = http://kent.dl.sourceforge.net/project/mpop/mpop/$v/mpop-$v.tar.bz2
-mkfile = ../mpop.mk

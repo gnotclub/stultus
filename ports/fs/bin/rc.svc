@@ -1,6 +1,0 @@
-#!/bin/sh
-
-. /etc/rc.conf
-
-/bin/svc -c
-/bin/svc -s

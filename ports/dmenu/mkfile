@@ -1,5 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-src = dmenu
-git = git://git.suckless.org/dmenu
-mkfile = ../dmenu.mk

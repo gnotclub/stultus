@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = dri2proto-$v
-url = http://xorg.freedesktop.org/releases/individual/proto/dri2proto-$v.tar.bz2
-mkfile = ../xorgdri2proto.mk

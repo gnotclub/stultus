@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = libtorrent-$v
-url = http://libtorrent.rakshasa.no/downloads/libtorrent-$v.tar.gz
-mkfile = ../libtorrent.mk

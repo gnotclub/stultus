@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = nginx-$v
-url = http://nginx.org/download/nginx-$v.tar.gz
-mkfile = ../nginx.mk

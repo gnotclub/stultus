@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = meh
-git = https://github.com/jhawthorn/meh/
-mkfile = ../meh.mk

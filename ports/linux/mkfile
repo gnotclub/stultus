@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = linux-$v
-url = $mirror/linux-$v.tar.gz
-mkfile = ../linux.mk

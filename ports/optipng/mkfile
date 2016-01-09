@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = optipng-$v
-url = http://garr.dl.sourceforge.net/project/optipng/OptiPNG/optipng-$v/optipng-$v.tar.gz
-mkfile = ../optipng.mk

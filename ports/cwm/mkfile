@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-src = cwm
-branch = linux
-git = git://github.com/chneukirchen/cwm.git
-mkfile = ../cwm.mk

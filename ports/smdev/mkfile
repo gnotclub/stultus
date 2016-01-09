@@ -1,5 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-src = smdev
-git = git://git.2f30.org/smdev
-mkfile = ../smdev.mk

@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = tinyxserver
-url = http://dl.2f30.org/morpheus-pkgs/$arch/0.0/tinyxserver.tar.gz
-mkfile = ../tinyxserver.mk

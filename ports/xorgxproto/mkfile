@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = xproto-$v
-url = http://xorg.freedesktop.org/releases/individual/proto/xproto-$v.tar.bz2
-mkfile = ../xorgxproto.mk

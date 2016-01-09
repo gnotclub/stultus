@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = ed-$v
-url = http://ftp.gnu.org/gnu/ed/ed-$v.tar.gz
-mkfile = ../ed.mk

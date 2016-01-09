@@ -1,4 +1,0 @@
-TARG = fs hbase sbase ubase mksh zlib file
-
-<$mkbuild/mk.parent
-

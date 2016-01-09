@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = libav-$v
-url = https://libav.org/releases/libav-$v.tar.xz
-mkfile = ../libav.mk

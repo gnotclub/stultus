@@ -1,9 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = elinks-$v
-url = http://elinks.or.cz/download/elinks-$v.tar.bz2
-mkfile = ../elinks.mk
-patches = \
-	../elinks-configure.patch \
-	"0" ../elinks-libressl.patch

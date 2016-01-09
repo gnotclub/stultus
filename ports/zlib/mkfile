@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = zlib-$v
-url = http://heanet.dl.sourceforge.net/project/libpng/zlib/$v/zlib-$v.tar.xz
-mkfile = ../zlib.mk

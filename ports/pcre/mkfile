@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = pcre-$v
-url = http://cznic.dl.sourceforge.net/project/pcre/pcre/$v/pcre-$v.tar.bz2
-mkfile = ../pcre.mk

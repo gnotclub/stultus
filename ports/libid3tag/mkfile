@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = libid3tag-$v
-url = ftp://ftp.mars.org/pub/mpeg/libid3tag-$v.tar.gz
-mkfile = ../libid3tag.mk

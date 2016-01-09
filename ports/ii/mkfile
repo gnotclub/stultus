@@ -1,5 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-src = ii
-git = http://git.suckless.org/ii
-mkfile = ../ii.mk

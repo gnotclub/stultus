@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = vim74
-url = http://ftp.vim.org/pub/vim/unix/vim-$v.tar.bz2
-mkfile = ../vim.mk

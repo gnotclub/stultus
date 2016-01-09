@@ -1,8 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = mksh
-url = \
-	https://www.mirbsd.org/MirOS/dist/mir/mksh/mksh-$v.tgz \
-	$mirror/mksh-$v.tgz
-mkfile = ../mksh.mk

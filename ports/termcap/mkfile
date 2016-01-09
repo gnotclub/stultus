@@ -1,9 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = termcap-$v
-url = http://ftp.gnu.org/gnu/termcap/termcap-$v.tar.gz
-mkfile = ../termcap.mk
-
-patches = \
-	../termcap.patch

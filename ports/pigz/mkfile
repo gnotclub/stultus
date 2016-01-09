@@ -1,6 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-<v.mk
-src = pigz-$v
-url = http://zlib.net/pigz/pigz-$v.tar.gz
-mkfile = ../pigz.mk

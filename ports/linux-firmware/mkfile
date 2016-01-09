@@ -1,5 +1,0 @@
-<$mkbuild/mk.3rdparty
-
-src = linux-firmware
-git = git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
-mkfile = ../linux-firmware.mk
