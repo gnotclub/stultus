@@ -1,4 +1,4 @@
-# 2c58 Linux
+# Stultus Linux
 
 A fork of Morpheus Linux, that hopes to revive the project and implement new features while keeping original goals.
 
