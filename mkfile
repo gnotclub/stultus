@@ -18,7 +18,7 @@ init:QV:
 	git submodule update --remote
 
 bootable:V:
-	scripts/create-bootable "$ROOT" morpheus-$arch-$version.img
+	scripts/create-bootable "$ROOT" stultus-$arch-$version.img
 
 install:QV:
 	cd ports
