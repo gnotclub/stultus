@@ -1,6 +1,6 @@
 arch = x86_64
 version = 0.0
-mirror = http://dl.2f30.org/morpheus-pkgs/${arch}/${version}
+mirror = http://dl.2f30.org/morpheus-pkgs/${arch}/${version} # TODO: Change this to a mitti mirror.
 pkgdirs = $mkbuild/../ports
 nprocs = 2
 
