@@ -1,6 +1,13 @@
 # Stultus Linux
 
-A fork of Morpheus Linux, that hopes to revive the project and implement new features while keeping original goals.
+Meta-repo for Stultus Linux, a Morpheus fork hoping to keep Morpheus' original goals while implementing new features.
+
+## Software used
+
+Package manager: [mitti](https://github.com/26c8/mitti), coupled with Plan 9 mk
+Init:            [sinit](http://git.2f30.org/sinit/log.html) + (tenative) [urc](https://arcetera.moe/git/urc)
+
+The rest really isn't set in stone.
 
 ## Status
 
